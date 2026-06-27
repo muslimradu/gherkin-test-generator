@@ -23,8 +23,6 @@ Alat bantu QA Automation untuk mengubah script Gherkin (`.feature`) menjadi boil
 
 ## 🚀 Cara Pakai (Tanpa Install)
 
-Buka file `gherkin-playwright-generator.html` langsung di browser. Selesai.
-
 ---
 
 ## 🛠️ Development Setup
@@ -169,18 +167,6 @@ Parser **tidak perlu diubah sama sekali**.
 - [ ] Selenium Java
 - [ ] WebdriverIO TypeScript
 - [ ] Robot Framework
-
----
-
-## 🤝 Kontribusi
-
-Pull request sangat disambut! Untuk perubahan besar, buka issue terlebih dahulu.
-
-1. Fork repository
-2. Buat branch fitur (`git checkout -b feature/tambah-cypress-generator`)
-3. Commit perubahan (`git commit -m 'feat: add Cypress TypeScript generator'`)
-4. Push branch (`git push origin feature/tambah-cypress-generator`)
-5. Buka Pull Request
 
 ---
 
