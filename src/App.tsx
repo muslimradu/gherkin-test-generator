@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { GherkinInput } from './components/GherkinInput';
 import { CodeOutput } from './components/CodeOutput';
 import { parseGherkin } from './parser/gherkinParser';
 import { generate } from './generator/index';
 import type { TargetLanguage, GeneratedFile } from './types/gherkin';
-import { Sparkles, BookOpen } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 function App() {
   const [gherkinText, setGherkinText] = useState('');
