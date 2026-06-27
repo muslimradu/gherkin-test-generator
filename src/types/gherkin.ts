@@ -44,7 +44,12 @@ export interface GherkinFeature {
   tags: string[];
 }
 
-export type TargetLanguage = 'playwright-ts' | 'playwright-js';
+export type TargetLanguage =
+  | 'playwright-ts'
+  | 'playwright-js'
+  | 'cypress-ts'
+  | 'cypress-js'
+  | 'selenium-java';
 
 export interface GeneratorConfig {
   language: TargetLanguage;

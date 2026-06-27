@@ -6,12 +6,23 @@ interface LanguageOption {
   value: TargetLanguage;
   label: string;
   badge: string;
+  badgeClass: string;
+  group: string;
 }
 
 const LANGUAGE_OPTIONS: LanguageOption[] = [
-  { value: 'playwright-ts', label: 'Playwright TypeScript', badge: 'TS' },
-  { value: 'playwright-js', label: 'Playwright JavaScript', badge: 'JS' },
+  { value: 'playwright-ts', label: 'Playwright TypeScript', badge: 'TS', badgeClass: 'bg-blue-100 text-blue-700 border-blue-200', group: 'Playwright' },
+  { value: 'playwright-js', label: 'Playwright JavaScript', badge: 'JS', badgeClass: 'bg-yellow-100 text-yellow-700 border-yellow-200', group: 'Playwright' },
+  { value: 'cypress-ts',    label: 'Cypress TypeScript',   badge: 'TS', badgeClass: 'bg-blue-100 text-blue-700 border-blue-200', group: 'Cypress' },
+  { value: 'cypress-js',    label: 'Cypress JavaScript',   badge: 'JS', badgeClass: 'bg-yellow-100 text-yellow-700 border-yellow-200', group: 'Cypress' },
+  { value: 'selenium-java', label: 'Selenium Java',        badge: 'Java', badgeClass: 'bg-orange-100 text-orange-700 border-orange-200', group: 'Selenium' },
 ];
+
+const FRAMEWORK_ICONS: Record<string, string> = {
+  Playwright: '🎭',
+  Cypress:    '🌲',
+  Selenium:   '🔬',
+};
 
 interface Props {
   value: TargetLanguage;
@@ -24,7 +35,7 @@ export const LanguageSelector: React.FC<Props> = ({ value, onChange }) => {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-xs font-semibold uppercase tracking-widest text-slate-400">
-        Target Language
+        Target Framework
       </label>
       <div className="relative">
         <select
@@ -32,10 +43,14 @@ export const LanguageSelector: React.FC<Props> = ({ value, onChange }) => {
           onChange={(e) => onChange(e.target.value as TargetLanguage)}
           className="w-full appearance-none bg-white border border-slate-200 text-slate-700 text-sm rounded-lg px-3 py-2.5 pr-8 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-400 cursor-pointer shadow-sm transition-colors"
         >
-          {LANGUAGE_OPTIONS.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
+          {['Playwright', 'Cypress', 'Selenium'].map((group) => (
+            <optgroup key={group} label={`${FRAMEWORK_ICONS[group]} ${group}`}>
+              {LANGUAGE_OPTIONS.filter((o) => o.group === group).map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
         <div className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400">
@@ -43,13 +58,7 @@ export const LanguageSelector: React.FC<Props> = ({ value, onChange }) => {
         </div>
       </div>
       <div className="flex items-center gap-1.5 mt-0.5">
-        <span
-          className={`text-[10px] font-bold px-1.5 py-0.5 rounded font-mono ${
-            selected.badge === 'TS'
-              ? 'bg-blue-100 text-blue-600 border border-blue-200'
-              : 'bg-yellow-100 text-yellow-600 border border-yellow-200'
-          }`}
-        >
+        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded font-mono border ${selected.badgeClass}`}>
           {selected.badge}
         </span>
         <span className="text-xs text-slate-400">{selected.label} selected</span>

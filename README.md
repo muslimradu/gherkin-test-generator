@@ -23,6 +23,8 @@ Alat bantu QA Automation untuk mengubah script Gherkin (`.feature`) menjadi boil
 
 ## 🚀 Cara Pakai (Tanpa Install)
 
+Buka file `gherkin-playwright-generator.html` langsung di browser. Selesai.
+
 ---
 
 ## 🛠️ Development Setup
@@ -35,7 +37,7 @@ Alat bantu QA Automation untuk mengubah script Gherkin (`.feature`) menjadi boil
 ### Instalasi
 
 ```bash
-git clone https://github.com/muslimradu/gherkin-playwright-generator.git
+git clone https://github.com/your-username/gherkin-playwright-generator.git
 cd gherkin-playwright-generator
 npm install
 npm run dev
@@ -50,75 +52,6 @@ npm run build
 ```
 
 Output tersedia di folder `dist/`.
-
----
-
-## ⚠️ Troubleshooting
-
-### UI tampil tanpa styling (halaman polos / tidak ada warna)
-
-Ini terjadi karena **Tailwind CSS tidak ter-load**. Pastikan Tailwind sudah ter-install:
-
-```bash
-# Cek apakah tailwindcss ada di node_modules
-ls node_modules | grep tailwind
-```
-
-Kalau tidak ada, install manual:
-
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-npm run dev
-```
-
-Pastikan `tailwind.config.js` memiliki `content` yang benar:
-
-```js
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: { extend: {} },
-  plugins: [],
-}
-```
-
----
-
-### Error: `The service was stopped: write EPIPE` saat `npm run dev`
-
-Ini adalah error **esbuild binary crash**, bukan dari kode aplikasi. Biasanya terjadi karena mismatch versi Node.js dengan binary esbuild yang ter-download.
-
-**Solusi 1 — Reinstall node_modules:**
-```bash
-rm -rf node_modules package-lock.json
-npm install
-npm run dev
-```
-
-**Solusi 2 — Rebuild esbuild saja:**
-```bash
-npm rebuild esbuild
-npm run dev
-```
-
-**Solusi 3 — Update Node.js:**
-```bash
-# Cek versi Node saat ini
-node -v
-
-# Kalau < 18, update via nvm
-nvm install --lts
-nvm use --lts
-npm install
-npm run dev
-```
-
----
-
-### Error: `failed to load config from vite.config.ts`
-
-Biasanya muncul bersamaan dengan error esbuild di atas. Ikuti **Solusi 1** (reinstall node_modules) untuk menyelesaikannya.
 
 ---
 
